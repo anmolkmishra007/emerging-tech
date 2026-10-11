@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <a class="back" href="index.html">← All topics</a>
+    <span class="counter" id="counter"></span>
+  </div>
+
+  <div class="hero">
+    <div class="big-icon" id="icon"></div>
+    <h1 id="title"></h1>
+    <p class="tagline" id="tagline"></p>
+  </div>
+
+  <div class="content" id="content">
+    <section class="box">
+      <h2>📖 Overview</h2>
+      <p id="overview"></p>
+    </section>
+
+    <section class="box">
+      <h2>⚙️ How it works</h2>
+      <ol class="steps" id="steps"></ol>
+    </section>
+
+    <section class="box">
+      <h2>🔑 Key terms</h2>
+      <div class="chips" id="terms"></div>
+    </section>
+
+    <section class="box">
+      <h2>🌍 Applications</h2>
+      <ul class="apps" id="apps"></ul>
+    </section>
+
+    <section class="box">
+      <div class="two-col">
+        <div class="pros">
+          <h3>✅ Advantages</h3>
+          <ul id="pros"></ul>
+        </div>
+        <div class="cons">
+          <h3>⚠️ Challenges</h3>
+          <ul id="cons"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>🚀 Future scope</h2>
+      <p id="future"></p>
+    </section>
+
+    <section class="box fact">
+      <h2>💡 Did you know?</h2>
+      <p id="fact"></p>
+    </section>
+
+    <div class="nav" id="nav"></div>
+  </div>
+
+  <script>
+    const topics = {
+      ai: {
+        icon: "🤖",
+        title: "Artificial Intelligence",
+        tagline: "Teaching machines to think, learn and decide.",
+        overview: "Artificial Intelligence (AI) is the ability of a computer system to perform tasks that normally need human intelligence, such as understanding language, recognising images, solving problems and making decisions.",
+        steps: [
+          "Collect a large amount of data (text, images, numbers).",
+          "Train a model so it finds patterns in that data.",
+          "Test the model on new data to check its accuracy.",
+          "Deploy it so it can make predictions or decisions in real life."
+        ],
+        terms: [
+          ["Machine Learning", "systems that learn from data"],
+          ["Neural Network", "layers of nodes inspired by the brain"],
+          ["NLP", "understanding human language"],
+          ["Generative AI", "creates new text, images, code"]
+        ],
+        apps: [
+          "Healthcare: detecting diseases from X-rays and scans",
+          "Education: personalised learning and tutoring",
+          "Banking: fraud detection",
+          "Daily life: voice assistants, recommendations, face unlock"
+        ],
+        pros: ["Works 24/7 without getting tired", "Processes huge data very fast", "Reduces human error in repetitive tasks"],
+        cons: ["Can inherit bias from training data", "Raises job and privacy concerns", "Needs lots of data and computing power"],
+        future: "AI is expected to become part of almost every field, from self-driving vehicles and smart cities to drug discovery, while governments work on rules for ethical and safe use.",
+        fact: "The term \"Artificial Intelligence\" was first used in 1956 at a workshop at Dartmouth College in the USA."
+      },
+
+      iot: {
+        icon: "📡",
+        title: "Internet of Things",
+        tagline: "When everyday objects get connected and smart.",
+        overview: "The Internet of Things (IoT) is a network of physical objects, such as appliances, vehicles and wearables, that have sensors and software and can collect and exchange data over the internet.",
+        steps: [
+          "Sensors collect data (temperature, motion, location).",
+          "The device sends the data through Wi-Fi, Bluetooth or 5G.",
+          "A cloud platform stores and analyses the data.",
+          "The user gets an alert, or the system acts automatically."
+        ],
+        terms: [
+          ["Sensor", "captures real-world data"],
+          ["Actuator", "performs an action, like a motor"],
+          ["Gateway", "connects devices to the cloud"],
+          ["Edge computing", "processing data near the device"]
+        ],
+        apps: [
+          "Smart homes: lights, locks and thermostats",
+          "Agriculture: soil moisture and crop monitoring",
+          "Healthcare: smartwatches and remote patient monitoring",
+          "Industry: predicting machine failures"
+        ],
+        pros: ["Automates daily tasks", "Gives real-time monitoring", "Saves energy and cost"],
+        cons: ["Security and hacking risks", "Privacy of personal data", "Devices from different brands may not work together"],
+        future: "With 5G and cheaper sensors, billions more devices will connect, leading to smart cities with automated traffic, waste management and energy use.",
+        fact: "The first IoT device is often said to be a Coke vending machine at Carnegie Mellon University in the early 1980s that could report whether drinks were cold."
+      },
+
+      blockchain: {
+        icon: "⛓️",
+        title: "Blockchain",
+        tagline: "A shared digital ledger that is very hard to cheat.",
+        overview: "A blockchain is a digital record book stored on many computers at once. Data is saved in blocks that are linked together in a chain, so once something is recorded it is extremely difficult to change.",
+        steps: [
+          "Someone makes a transaction, such as sending money.",
+          "The transaction is grouped with others into a block.",
+          "Computers in the network verify that the block is valid.",
+          "The block is added to the chain and everyone's copy is updated."
+        ],
+        terms: [
+          ["Block", "a group of records"],
+          ["Hash", "a unique digital fingerprint"],
+          ["Decentralised", "no single owner or authority"],
+          ["Smart contract", "code that runs automatically on a blockchain"]
+        ],
+        apps: [
+          "Cryptocurrency: Bitcoin and Ethereum",
+          "Supply chain: tracking products from factory to shop",
+          "Education: tamper-proof digital certificates",
+          "Government: land records and voting research"
+        ],
+        pros: ["Transparent and secure", "No middleman needed", "Records cannot be easily altered"],
+        cons: ["Uses a lot of energy in some systems", "Slower than normal databases", "Rules and regulations are still developing"],
+        future: "More industries are testing blockchain for identity, healthcare records and digital ownership, and newer designs aim to be faster and use less energy.",
+        fact: "Bitcoin, the first major blockchain, was introduced in 2008 by a person or group using the name Satoshi Nakamoto, whose real identity is still unknown."
+      },
+
+      ar: {
+        icon: "🥽",
+        title: "AR / VR",
+        tagline: "Blending the digital and real worlds, or replacing the real one.",
+        overview: "Augmented Reality (AR) adds digital objects on top of the real world through a phone or glasses. Virtual Reality (VR) places you inside a completely digital world using a headset.",
+        steps: [
+          "Cameras and sensors track your surroundings and movement.",
+          "Software builds or overlays the digital 3D content.",
+          "A screen or headset displays it from your point of view.",
+          "As you move, the view updates instantly to feel natural."
+        ],
+        terms: [
+          ["AR", "digital content over the real world"],
+          ["VR", "fully virtual environment"],
+          ["MR", "mixed reality: real and virtual interact"],
+          ["Headset", "device worn to view VR"]
+        ],
+        apps: [
+          "Education: virtual labs and 3D models",
+          "Medicine: surgery practice and training",
+          "Shopping: previewing furniture in your room",
+          "Gaming and entertainment: immersive experiences"
+        ],
+        pros: ["Makes learning interactive", "Safe practice for risky jobs", "Creates immersive experiences"],
+        cons: ["Headsets can be expensive", "Can cause dizziness or eye strain", "Needs powerful hardware"],
+        future: "Lighter smart glasses and better graphics may bring AR and VR into classrooms, offices and everyday life, including virtual meetings and remote collaboration.",
+        fact: "Pokémon GO, released in 2016, brought AR to hundreds of millions of people and is one of the most downloaded AR games ever."
+      }
+    };
+
+    const keys = Object.keys(topics);
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("topic");
+    const topic = topics[key];
+
+    function setText(id, text) {
+      document.getElementById(id).textContent = text;
+    }
+
+    function fillList(id, items) {
+      const list = document.getElementById(id);
+      items.forEach(function (text) {
+        const li = document.createElement("li");
+        li.textContent = text;
+        list.appendChild(li);
+      });
+    }
+
+    if (!topic) {
+      document.querySelector(".hero").innerHTML = "<h1>Topic not found</h1>";
+      document.getElementById("content").innerHTML =
+        '<div class="nav"><a href="index.html">← Go back to topics</a></div>';
+    } else {
+      document.title = topic.title;
+      setText("icon", topic.icon);
+      setText("title", topic.title);
+      setText("tagline", topic.tagline);
+      setText("overview", topic.overview);
+      setText("future", topic.future);
+      setText("fact", topic.fact);
+
+      fillList("steps", topic.steps);
+      fillList("apps", topic.apps);
+      fillList("pros", topic.pros);
+      fillList("cons", topic.cons);
+
+      const termBox = document.getElementById("terms");
+      topic.terms.forEach(function (pair) {
+        const div = document.createElement("div");
+        div.className = "chip";
+        div.innerHTML = "<b></b> – <span></span>";
+        div.querySelector("b").textContent = pair[0];
+        div.querySelector("span").textContent = pair[1];
+        termBox.appendChild(div);
+      });
+
+      const index = keys.indexOf(key);
+      setText("counter", (index + 1) + " of " + keys.length);
+
+      const prevKey = keys[(index - 1 + keys.length) % keys.length];
+      const nextKey = keys[(index + 1) % keys.length];
+      document.getElementById("nav").innerHTML =
+        '<a href="topic.html?topic=' + prevKey + '">← ' + topics[prevKey].title + '</a>' +
+        '<a href="topic.html?topic=' + nextKey + '">' + topics[nextKey].title + ' →</a>';
+    }
+  </script>
+
+</body>
+</html>
